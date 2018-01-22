@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyView</title>
+</head>
+<body>
+    @{
+        Labor.Models.Employee emp = (Labor.Models.Employee)
+            ViewData["Employee"];
+    }
+
+    <b>Employee Details </b><br />
+    Employee Name : @emp.FirstName@emp.LastName <br />
+    Employee Salary: @emp.Salary.ToString("C")
+</body>
+</html>

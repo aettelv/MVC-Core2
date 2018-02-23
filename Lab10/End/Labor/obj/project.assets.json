@@ -13124,11 +13124,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "C:\\Users\\aette\\source\\repos\\MVC Core\\Lab10\\Labor\\Labor\\Labor.csproj",
+      "projectUniqueName": "C:\\Users\\aette\\Documents\\GitHub\\MVC-Core2\\Lab10\\End\\Labor\\Labor.csproj",
       "projectName": "Labor",
-      "projectPath": "C:\\Users\\aette\\source\\repos\\MVC Core\\Lab10\\Labor\\Labor\\Labor.csproj",
+      "projectPath": "C:\\Users\\aette\\Documents\\GitHub\\MVC-Core2\\Lab10\\End\\Labor\\Labor.csproj",
       "packagesPath": "C:\\Users\\aette\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\aette\\source\\repos\\MVC Core\\Lab10\\Labor\\Labor\\obj\\",
+      "outputPath": "C:\\Users\\aette\\Documents\\GitHub\\MVC-Core2\\Lab10\\End\\Labor\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

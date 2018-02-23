@@ -8,18 +8,12 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>CreateEmployee</title>
-    <script src="~/js/Validations.js"/>
-        <script>
-            function ResetForm() {
-            document.getElementById('TxtFName').value = "";
-            document.getElementById('TxtLName').value = "";
-            document.getElementById('TxtSalary').value = "";
-     }
+    <script src="~/js/Validations.js">       
     </script>
 </head>
 <body>
     <div>
-        <form action="/Employee/SaveEmployee" method="post" id="EmplyeeForm" />
+        <form action="/Employee/SaveEmployee" method="post" id="EmplyeeForm" >
         <table>
             <tr>
                 <td>
@@ -31,6 +25,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="right">
+                    @Html.ValidationMessage("FirstName")
                 </td>
             </tr>
             <tr>
@@ -43,6 +38,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="right">
+                    @Html.ValidationMessage("LastName")
                 </td>
             </tr>
 
@@ -56,6 +52,7 @@
             </tr>
             <tr>
                 <td colspan="2" align="right">
+                    @Html.ValidationMessage("Salary")
                 </td>
             </tr>
 
@@ -67,6 +64,7 @@
                 </td>
             </tr>
         </table>
+            </form>
     </div>
 </body>
 </html>

@@ -57,3 +57,10 @@ function IsValid() {
         return true;
     }
 }
+
+function ResetForm()
+        {
+            document.getElementById('TxtFName').value = "";
+            document.getElementById('TxtLName').value = "";
+            document.getElementById('TxtSalary').value = "";
+        }      

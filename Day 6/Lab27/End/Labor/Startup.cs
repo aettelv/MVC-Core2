@@ -38,6 +38,10 @@ namespace Labor
             services.AddDistributedMemoryCache();
             services.AddSession();
 
+            services.AddSingleton<IFileProvider>(
+                    new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
             services.AddMvc();
         }
 

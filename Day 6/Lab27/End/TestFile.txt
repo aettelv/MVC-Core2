@@ -1,3 +1,0 @@
-FName,LName,Salary
-Fname1,LN1,5523
-FName,LN2,25630

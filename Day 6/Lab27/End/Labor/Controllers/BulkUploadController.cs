@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.Linq;
 using System;
 using System.Net.Http.Headers;
+using Microsoft.Extensions.FileProviders;
 
 namespace Labor.Controllers
 {
@@ -25,50 +26,87 @@ namespace Labor.Controllers
             return View(new FileUploadViewModel());
         }
 
-
-        [AdminFilter]
-        public ActionResult Upload(FileUploadViewModel model, string upload)
+        [HttpPost]
+        public async Task<IActionResult> UploadFileViaModel(FileUploadViewModel model)
         {
+            if (model == null ||
+                model.FileToUpload == null || model.FileToUpload.Length == 0)
+                return Content("file not selected");
+            var path = Path.Combine(
+                   Directory.GetCurrentDirectory(), "wwwroot",
+                   model.FileToUpload.GetFilename());
+            //using (var stream = new FileStream(path, FileMode.Create))
+            //{
+            //    model.FileToUpload.CopyToAsync(stream);
+            //}
+
+
             List<Employee> employees = GetEmployees(model);
             EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
             bal.UploadEmployees(employees, db);
 
             return RedirectToAction("Index", "Employee");
+
+            //var path = Path.Combine(
+            //            Directory.GetCurrentDirectory(), "wwwroot",
+            //            model.FileToUpload.GetFilename());
+            //using (var stream = new FileStream(path, FileMode.Create))
+            //{
+            //    await model.FileToUpload.CopyToAsync(stream);
+            //    StreamReader reader = new StreamReader(stream);
+            //    List<Employee> employees = new List<Employee>();
+
+            //    reader.ReadLine();
+
+            //    while (!reader.EndOfStream)
+            //    {
+            //        var line = reader.ReadLine();
+            //        var values = line.Split(',');
+            //        Employee e = new Employee();
+            //        e.FirstName = values[0];
+            //        e.LastName = values[1];
+            //        e.Salary = int.Parse(values[2]);
+            //        employees.Add(e);
+
+            //    }
+            //    return RedirectToAction("Index", "Employee");
         }
 
-        private static List<Employee> GetEmployees(FileUploadViewModel model)
+        //[AdminFilter]
+        //public ActionResult Upload(FileUploadViewModel model, string upload)
+        //{
+        //    List<Employee> employees = GetEmployees(model);
+        //    EmployeeBusinessLayer bal = new EmployeeBusinessLayer();
+        //    bal.UploadEmployees(employees, db);
+
+        //    return RedirectToAction("Index", "Employee");
+        //}
+
+        private List<Employee> GetEmployees(FileUploadViewModel model)
         {
-            List<Employee> employees = new List<Employee>();
-
-            var result = new List<string>();
-            using (var reader = new StreamReader(model.FileToUpload.OpenReadStream()))
+            var path = Path.Combine(
+                    Directory.GetCurrentDirectory(), "wwwroot",
+                    model.FileToUpload.GetFilename());
+            using (var stream = new FileStream(path, FileMode.Create))
             {
-                //result = reader.ReadToEnd();
-                //reader.ReadLine();
+                model.FileToUpload.CopyToAsync(stream);
+                StreamReader reader = new StreamReader(stream);
+                List<Employee> employees = new List<Employee>();
 
+                reader.ReadLine();
 
-                //while (!reader.EndOfStream)
-                //{
-                //    var line = reader.ReadLine();
-                //    var values = line.Split(',');
-                //    Employee e = new Employee();
-                //    e.FirstName = values[0];
-                //    e.LastName = values[1];
-                //    e.Salary = int.Parse(values[2]);
-                //    employees.Add(e);
-
-
-
-                    while (reader.Peek() >= 0)
-                        result.Add(reader.ReadLine());
-                    //var values = result.Split(',').ToList();
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
                     Employee e = new Employee();
-                    e.FirstName = result[0];
-                    e.LastName = result[1];
-                    e.Salary = int.Parse(result[2]);
+                    e.FirstName = values[0];
+                    e.LastName = values[1];
+                    e.Salary = int.Parse(values[2]);
                     employees.Add(e);
                 }
                 return employees;
             }
         }
     }
+}

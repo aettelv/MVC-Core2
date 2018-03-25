@@ -1,11 +1,5 @@
 ﻿@{
-    Layout = null;
-}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width"/>
-    <title>CreateEmployee</title>
+    ViewBag.Title = "Create Employee";
     <script>
         function ResetForm() {
             document.getElementById('TxtFName').value = "";
@@ -13,60 +7,26 @@
             document.getElementById('TxtSalary').value = "";
         }
     </script>
-</head>
+}
+<!DOCTYPE html>
+<html>
+<h2>Create Employee</h2>
 <body>
-<div>
-    <form action="/Employee/SaveEmployee" method="post" id="EmplyeeForm"/>
-    <table>
-        <tr>
-            <td>
-                First Name:
-            </td>
-            <td>
-                <input type="text" id="TxtFName" name="FirstName" value=""/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right">
-                @Html.ValidationMessage("FirstName")
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Last Name:
-            </td>
-            <td>
-                <input type="text" id="TxtLName" name="LastName" value=""/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right">
-                @Html.ValidationMessage("LastName")
-            </td>
-        </tr>
-
-        <tr>
-            <td>
-                Salary:
-            </td>
-            <td>
-                <input type="text" id="TxtSalary" name="Salary" value=""/>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" align="right">
-                @Html.ValidationMessage("Salary")
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <input type="submit" name="BtnSubmit" value="Save Employee"/>
-                <input type="submit" name="BtnSubmit" value="Cancel"/>
-                <input type="button" name="BtnReset" value="Reset" onclick="ResetForm();"/>
-            </td>
-        </tr>
-    </table>
-</div>
+    <div>
+        <form action="/Employee/SaveEmployee" method="post">
+            <p>First Name: <input type="text" id="TxtFName" name="FirstName" value=""/>
+                @Html.ValidationMessage("FirstName") </p>
+            <p>Last Name: <input type="text" id="TxtLName" name="LastName" value=""/>
+                @Html.ValidationMessage("LastName")</p>
+            <p>Salary: <input type="text" id="TxtSalary" name="Salary" value=""/></p>                
+            <input type="submit" name="BtnSubmit" value="Save Employee" />                                    
+            <input type="button" name="BtnReset" value="Reset" onclick="ResetForm()"/>                
+            <input type="submit" name="BtnSubmit" value="Cancel" />
+        </form>
+    </div>
 </body>
 </html>
+
+
+
+

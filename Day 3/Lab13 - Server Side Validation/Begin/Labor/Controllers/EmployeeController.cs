@@ -50,13 +50,12 @@ namespace Labor.Controllers
             switch (BtnSubmit)
             {
                 case "Save Employee":
-                    var empBal = new EmployeeBusinessLayer();
+                    EmployeeBusinessLayer empBal = new EmployeeBusinessLayer();
                     empBal.SaveEmployee(e, db);
                     return RedirectToAction("Index");
                 case "Cancel":
                     return RedirectToAction("Index");
             }
-
             return new EmptyResult();
         }
     }

@@ -54,7 +54,6 @@ namespace Labor.Controllers
                 case "Cancel":
                     return RedirectToAction("Index");
             }
-
             return new EmptyResult();
         }
     }
